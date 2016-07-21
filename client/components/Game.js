@@ -2,7 +2,6 @@ import React from 'react';
 
 import * as Menu from '../models/menu';
 import Lobby from './Lobby';
-import Sidebar  from './Sidebar';
 import BattleContainer from './BattleContainer';
 import End from './End';
 
@@ -18,7 +17,7 @@ export default class Game extends React.Component {
   }
 
   componentDidMount() {
-    this.userId = +sessionStorage.getItem('userId');
+    this.user_id = +sessionStorage.getItem('user_id');
     this.gameId = +sessionStorage.getItem('gameId');
     
     // listens for 'start game' broadcasts
@@ -57,7 +56,7 @@ export default class Game extends React.Component {
       //    reset player scores and status
       Promise.all([
         Menu.updateGameStatus(this.gameId, 'waiting'),
-        Menu.resetUser(this.userId)
+        Menu.resetUser(this.user_id)
       ])
         .then(() => {
           socket.emit('rematch', this.gameId);
@@ -66,7 +65,7 @@ export default class Game extends React.Component {
     } else {
       Promise.all([
         Menu.updateGameStatus(this.gameId, 'full'),
-        Menu.resetUser(this.userId)
+        Menu.resetUser(this.user_id)
       ])
         .then(() => {
           socket.emit('join game', this.gameId);
@@ -82,7 +81,7 @@ export default class Game extends React.Component {
         <Lobby 
           accessCode={this.props.params.accessCode} 
           startGame={this.startGame.bind(this)}
-        /> && <Sidebar /> : this.state.view === 'battle' ?
+        /> : this.state.view === 'battle' ?
         <BattleContainer 
           endGame={this.endGame.bind(this)} 
         /> : 

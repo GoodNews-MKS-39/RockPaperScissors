@@ -13,7 +13,7 @@ export default class Lobby extends React.Component{
   }
 
   componentDidMount() {
-    this.userId = +sessionStorage.getItem('userId');
+    this.user_id = +sessionStorage.getItem('user_id');
     this.gameId = +sessionStorage.getItem('gameId');
 
 
@@ -69,15 +69,15 @@ export default class Lobby extends React.Component{
     // else delete current user record from db and 
     // socket emit leave game to make the other client refresh player list
     if (this.state.players.length === 1) {
-      db.deleteUserById(this.userId).then();
+      db.deleteUserById(this.user_id).then();
       db.deleteGameById(this.gameId).then();
       sessionStorage.removeItem('gameId');
-      sessionStorage.removeItem('userId');
+      sessionStorage.removeItem('user_id');
     } else {
       db.updateGameStatus(this.gameId, 'waiting').then(() => {
-        db.deleteUserById(this.userId).then();
+        db.deleteUserById(this.user_id).then();
         sessionStorage.removeItem('gameId');
-        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('user_id');
         socket.emit('leave game', this.gameId);
       });
     }
@@ -105,7 +105,7 @@ export default class Lobby extends React.Component{
               {player.name} 
 
               {/* show edit button if current player */}
-              {player.id === this.userId ?
+              {player.id === this.user_id ?
                 <a 
                   href="#" 
                   className="btn-edit-player"

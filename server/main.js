@@ -43,12 +43,46 @@ app.post('/api/games', (req, res) => {
   });
 });
 
+// taking gameId, will assign it to user that creates game
+app.post('/api/users/start', (req, res) => {
+  console.log('req', req.body);
+  db('users').where('user_id', req.body.user_id).update({
+    'game_id': req.body.gameId,
+    'status': 'waiting',
+    'score': 0
+  })
+  .then(resp => {
+    res.send(200)
+  })
+  .catch((err) => {
+    console.error(err);
+    res.sendStatus(500);
+  });
+});
+
+// taking gameId, will assign it to user that joins game
+app.post('/api/users/join', (req, res) => {
+  console.log('req', req.body);
+  db('users').where('user_id', req.body.user_id).update({
+    'game_id': req.body.gameId,
+    'status': 'waiting',
+    'score': 0
+  })
+  .then(resp => {
+    res.send(200)
+  })
+  .catch((err) => {
+    console.error(err);
+    res.sendStatus(500);
+  });
+});
+
 // taking user_id from request body, create new session record in db if it does not exist
 app.post('/api/sessions', (req, res) => {
   db.select('*').from('sessions')
   .then(rows => {
-    var userIds = rows.map(session => session.user_id);
-    if (!userIds.includes(req.body.user_id)) {
+    var user_ids = rows.map(session => session.user_id);
+    if (!user_ids.includes(req.body.user_id)) {
       db('sessions').insert({
         user_id: req.body.user_id,
       })
@@ -64,8 +98,8 @@ app.post('/api/sessions', (req, res) => {
 app.post('/api/users', (req, res) => {
   db.select('*').from('users')
   .then(rows => {
-    var userIds = rows.map(user => user.user_id);
-    if (!userIds.includes(req.body.user_id)) {
+    var user_ids = rows.map(user => user.user_id);
+    if (!user_ids.includes(req.body.user_id)) {
       db('users').insert({
         user_id: req.body.user_id,
         name: req.body.name,
@@ -106,9 +140,9 @@ app.get('/api/sessions', (req, res) => {
   })
 });
 
-// returns the user that matches a given userId
-app.get('/api/users/:userId', (req, res) => {
-  db('users').where('user_id', req.params.userId)
+// returns the user that matches a given user_id
+app.get('/api/users/:user_id', (req, res) => {
+  db('users').where('user_id', req.params.user_id)
     .then(rows => {
       res.send(rows);
     })
@@ -148,7 +182,7 @@ app.patch('/api/gameStatus', (req, res) => {
 });
 
 app.patch('/api/resetUser', (req, res) => {
-  db('users').where('id', req.body.userId).update({
+  db('users').where('user_id', req.body.user_id).update({
     status: 'waiting',
     score: 0
   })
@@ -161,10 +195,10 @@ app.patch('/api/resetUser', (req, res) => {
 //--------------------------------------------//
 app.patch('/api/userMove', (req, res) => {
   let move = req.body.move;
-  let userId = req.body.userId;
+  let user_id = req.body.user_id;
 
-  // insert the move under status where id === userId
-  db('users').where('id', userId).update({status: move})
+  // insert the move under status where id === user_id
+  db('users').where('user_id', user_id).update({status: move})
     .then(() => {
       res.send({});
 	    // res.sendStatus(200);
@@ -173,7 +207,7 @@ app.patch('/api/userMove', (req, res) => {
 
 // delete user by id
 app.delete('/api/users', (req,res) => {
-  db('users').where('id', req.body.userId).del()
+  db('users').where('user_id', req.body.user_id).del()
     .then(() => {
       res.send({});
     })
@@ -190,29 +224,29 @@ app.delete('/api/games', (req,res) => {
 //----------- increment player score----------//
 //--------------------------------------------//
 app.patch('/api/incUserScore', (req,res) => {
-  let userId = req.body.userId;
+  let user_id = req.body.user_id;
 
-  // increment the score by 1 where id === userId
-  db('users').where('id', req.body.userId).increment('score', 1)
+  // increment the score by 1 where id === user_id
+  db('users').where('user_id', req.body.user_id).increment('score', 1)
     .then(() => {
-      res.send({userId});
+      res.send({user_id});
     })
 });
 
 //------------ get player object by id-------//
 //-------------------------------------------//
 app.get('/api/users/:id', (req,res) => {
-  db.select('*').from('users').where('id', req.params.id)
+  db.select('*').from('users').where('user_id', req.params.id)
     .then((data) => {
       res.send(data)
     })
 })
 //------get opponent object by player id-----//
 //-------------------------------------------//
-app.get('/api/users/:userId/opponent/:gameId', (req,res) => {
-  var userId = req.params.userId;
+app.get('/api/users/:user_id/opponent/:gameId', (req,res) => {
+  var user_id = req.params.user_id;
   var gameId = req.params.gameId;
-  db.select('*').from('users').where('game_id', '=', gameId).whereNot('id', '=', userId)
+  db.select('*').from('users').where('game_id', '=', gameId).whereNot('user_id', '=', user_id)
     .then((data) => {
       res.send(data)
     })

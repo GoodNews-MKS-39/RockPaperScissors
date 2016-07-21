@@ -26,7 +26,7 @@ export default class BattleContainer extends React.Component {
 
   componentDidMount() {
     this.gameId = sessionStorage.getItem('gameId');
-    this.userId = sessionStorage.getItem('userId');
+    this.user_id = sessionStorage.getItem('user_id');
 
     // populate player and opponent state objects
     this.updatePlayer();
@@ -60,8 +60,8 @@ export default class BattleContainer extends React.Component {
     if (this.state.moveAllowed) {
       // on move, set icon graphic
       this.setState({playerIcon: getIcon(move)});
-      // send move to db with lookup by userId
-      Game.playerMove(move, this.userId)
+      // send move to db with lookup by user_id
+      Game.playerMove(move, this.user_id)
         // update opponent to check status
         .then(() => {
           return this.updateOpponent();
@@ -73,7 +73,7 @@ export default class BattleContainer extends React.Component {
             const playerMove = Math.random() < .1 ? 'godHand' : move;
             const opponentMove = Math.random() < .1 ? 'godHand' : this.state.opponent.status;
             Promise.all([
-              Game.playerMove(playerMove, this.userId),
+              Game.playerMove(playerMove, this.user_id),
               Game.playerMove(opponentMove, this.state.opponent.id)
             ])
               .then(() => {
@@ -85,7 +85,7 @@ export default class BattleContainer extends React.Component {
   }
 
   updatePlayer() {
-    return Game.getPlayerById(this.userId)
+    return Game.getPlayerById(this.user_id)
       .then(data => {
         this.setState({player: data[0]});
         return;
@@ -93,7 +93,7 @@ export default class BattleContainer extends React.Component {
   }
 
   updateOpponent() {
-    return Game.getOpponentByPlayerId(this.userId, this.gameId)
+    return Game.getOpponentByPlayerId(this.user_id, this.gameId)
       .then(data => {
         this.setState({opponent: data[0]});
         return;
@@ -138,7 +138,7 @@ export default class BattleContainer extends React.Component {
       moveAllowed: true,
       godHand: false
     });
-    Game.playerMove('waiting', this.userId).then();
+    Game.playerMove('waiting', this.user_id).then();
   }
 
   _playerWin() {
@@ -146,7 +146,7 @@ export default class BattleContainer extends React.Component {
     this.state.winners[this.state.round-1] = 'player';
     this.setState({status: 'player', round: this.state.round + 1});
     // inc score in db by 1
-    Game.incPlayerScore(this.userId).then();
+    Game.incPlayerScore(this.user_id).then();
 
     // if current player score is 1 (will be 2 after increment), then end game
     if (this.state.player.score === 1) {
