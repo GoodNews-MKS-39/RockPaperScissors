@@ -19,22 +19,22 @@ export default class Menu extends React.Component{
 
   // on mount, check for authentication and save credentials to database
   componentDidMount() {
-    let userId;
+    let user_id;
     checkLogOn.call(this);
     function checkLogOn() {
-      userId = sessionStorage.getItem("userId");
-      if (userId) {
+      user_id = sessionStorage.getItem("user_id");
+      if (user_id) {
         this.setState({view: 'menu'});
-        db.generateNewSession(userId) // add session to db
+        db.generateNewSession(user_id) // add session to db
         .then(function(sessionId) {
           setTimeout(function(){
             let name = sessionStorage.getItem("name");
             let photo_url = sessionStorage.getItem("photo_url");
             let friends = sessionStorage.getItem("friends");
-            db.createNewUser(userId, name, photo_url, friends) // add user to db
-            sessionStorage.clear();
-            sessionStorage.setItem('userId', userId);
-          },500);
+            db.createNewUser(user_id, name, photo_url, friends) // add user to db
+            // sessionStorage.clear();
+            // sessionStorage.setItem('user_id', user_id);
+          },1000);
         });
       } else {
         sessionStorage.clear();
@@ -64,9 +64,9 @@ export default class Menu extends React.Component{
   }
 
   _handleLogOut(view, e) { // delete session from database and sessionStorage
-    let userId = sessionStorage.getItem("userId");
-    console.log('logout button clicked', userId);
-    return db.deleteSessionByUserId(userId)
+    let user_id = sessionStorage.getItem("user_id");
+    console.log('logout button clicked', user_id);
+    return db.deleteSessionByUserId(user_id)
     .then(function(resp) {
       console.log('backend tells frontend that the session is deleted', resp);
       document.getElementById('log-out').click();

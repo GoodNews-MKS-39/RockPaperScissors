@@ -30,7 +30,6 @@ export default class Challenge extends React.Component {
 
   setOnlineUsers(users) {
     this.setState({onlineUsers: users});
-    console.log('this.state.onlineUsers', this.state.onlineUsers);
   }
 
 
@@ -39,16 +38,18 @@ export default class Challenge extends React.Component {
       <div>
       <h4>Online Users</h4>
         {
-          this.state.onlineUsers
-          .map(user => {
-            return (
-              <div key={user.user_id} className="challenge">
-                <img src= {user.photo_url} />
-                <span> {user.name} </span>
-                <button>CHALLENGE</button>
-              </div>
-            )
-          })
+          this.state.onlineUsers.length > 0
+          ? this.state.onlineUsers
+            .map(user => {
+              return (
+                <div key={user.user_id} className="challenge">
+                  <img src= {user.photo_url} />
+                  <span> {user.name} </span>
+                  <button>CHALLENGE</button>
+                </div>
+              )
+            })
+          : null
         }
       </div>
     );

@@ -18,13 +18,12 @@ export default class Join extends React.Component {
 
         // check if entered access code exists 
         if (game && game.status === 'waiting') {
-          db.generateNewUser(game.id, this.props.username)
-            .then(userId => {
-              userId = userId[0];
+          db.userJoinsGame(game.id)
+            .then(resp => {
+              let user_id = sessionStorage.getItem("user_id");
 
-              // set current userId to local storage
+              // set current gameId to local storage
               sessionStorage.setItem('gameId', game.id);
-              sessionStorage.setItem('userId', userId);
 
               // set game status to full
               db.updateGameStatus(game.id, 'full').then();

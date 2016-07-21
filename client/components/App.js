@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidebar from './Sidebar'
 import { Link } from 'react-router'
 import Menu from './Menu'
 
@@ -21,9 +20,6 @@ render() {
 	      <div className="menu">
 	      	<Menu />
 	      </div>
-			  <div className="sidebar-container vertical">
-    		  <Sidebar />
-    	  </div>
       </div>
     );
   }

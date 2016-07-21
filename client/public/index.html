@@ -62,7 +62,7 @@
 
     function fbAPI(authResponse) {
       // Get userID
-      sessionStorage.setItem('userId', authResponse.userID);
+      sessionStorage.setItem('user_id', authResponse.userID);
       // Get name
       FB.api(`/${authResponse.userID}`, function(response) {
         sessionStorage.setItem('name', response.name);
@@ -118,6 +118,7 @@
 
 
   <div id="app"></div>
+  <div id="sidebar"></div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script>var socket = io();</script>

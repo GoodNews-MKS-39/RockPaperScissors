@@ -15,6 +15,42 @@ export function generateNewGame(accessCode) {
   .catch(error => console.error(error));
 }
 
+//--------------User starts new Game------------//
+export function userStartsGame(gameId) {
+  return fetch('/api/users/start', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      gameId: gameId,
+      user_id: sessionStorage.getItem("user_id")
+    })
+  })
+  .then(resp => {
+    return resp;
+  })
+  .catch(error => console.error(error));
+}
+
+//--------------User joins Game------------//
+export function userJoinsGame(gameId) {
+  return fetch('/api/users/join', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      gameId: gameId,
+      user_id: sessionStorage.getItem("user_id")
+    })
+  })
+  .then(resp => {
+    return resp;
+  })
+  .catch(error => console.error(error));
+}
+
 //--------------Generate a new Session------------//
 export function generateNewSession(user_id) {
   if (user_id) {
@@ -46,13 +82,13 @@ export function createNewUser(user_id, name, photo_url, friends) {
       friends: friends
     })
   })
-  .then(userId => userId.json())
+  .then(user_id => user_id.json())
   .catch(error => console.error(error));
 }
 
 //----------Get a User by ID---------//
-export function getUserById(userId) {
-  return fetch('/api/users/' + userId, {
+export function getUserById(user_id) {
+  return fetch('/api/users/' + user_id, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -129,14 +165,14 @@ export function deleteGameById(gameId) {
   .catch(error => console.error(error));
 }
 
-export function deleteUserById(userId) {
+export function deleteUserById(user_id) {
   return fetch('/api/users', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      userId: userId,
+      user_id: user_id,
     })
   })
   .then(data => data.json())
@@ -159,14 +195,14 @@ export function deleteSessionByUserId(user_id) {
 }
 //-----------------------------------------//
 
-export function resetUser(userId) {
+export function resetUser(user_id) {
   return fetch('/api/resetUser', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      userId: userId,
+      user_id: user_id,
     })
   })
   .then(data => data.json())

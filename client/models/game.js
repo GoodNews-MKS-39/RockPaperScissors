@@ -7,7 +7,7 @@ import fetch from 'isomorphic-fetch';
   // use "req.params" or "req.query" to grab the information with express
 
 //------update player's status to move-------//
-export function playerMove(move, userId){
+export function playerMove(move, user_id){
 	return fetch('/api/userMove',{
 		method: 'PATCH',
 		headers: {
@@ -15,7 +15,7 @@ export function playerMove(move, userId){
 		},
 		body: JSON.stringify({
 			move: move,
-      userId: userId
+      user_id: user_id
 		})
 	})
   .then(data => data.json())
@@ -23,14 +23,14 @@ export function playerMove(move, userId){
 }
 
 //-----------increment player score-----------//
-export function incPlayerScore(userId){
+export function incPlayerScore(user_id){
 	return fetch('/api/incUserScore',{
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-      userId: userId
+      user_id: user_id
 		})
 	})
   .then(data => data.json())
@@ -38,8 +38,8 @@ export function incPlayerScore(userId){
 }
 
 //--------------get player by id-------------//
-export function getPlayerById(userId){
-  return fetch('/api/users/' + userId, {
+export function getPlayerById(user_id){
+  return fetch('/api/users/' + user_id, {
     method: 'GET',
     headers: {
       'Content-Type' : 'application/json'
@@ -50,8 +50,8 @@ export function getPlayerById(userId){
 }
 
 //--------get opponent by player id-----------//
-export function getOpponentByPlayerId(userId, gameId){
-  return fetch('/api/users/' + userId + '/opponent/' + gameId, {
+export function getOpponentByPlayerId(user_id, gameId){
+  return fetch('/api/users/' + user_id + '/opponent/' + gameId, {
     method: "GET",
     headers: {
       'Content-Type' : 'application/json'

@@ -8,6 +8,7 @@ import App from './components/App';
 import Menu from './components/Menu';
 import Game from './components/Game';
 import BattleContainer from './components/BattleContainer';
+import Sidebar from './components/Sidebar';
 
 // Render that component to the DOM!
 ReactDOM.render((
@@ -17,3 +18,11 @@ ReactDOM.render((
     <Route path="/:accessCode" component={Game} />
   </Router>
 ), document.getElementById('app'))
+
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path="/" component={Sidebar} />
+    <Route path="/battle" component={Sidebar} />
+    <Route path="/:accessCode" component={Sidebar} />
+  </Router>
+), document.getElementById('sidebar'))
