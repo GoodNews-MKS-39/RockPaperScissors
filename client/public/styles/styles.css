@@ -21,6 +21,10 @@ a {
   width: 130px;
 }
 
+button {
+  border-radius: 5em;
+}
+
 .container {
   text-align: center;
   padding: 10px;
@@ -45,6 +49,9 @@ a {
   padding-top: 20%;
   max-width: 500px;
   margin: auto;
+}
+div.narrative.container.nine.column{
+  padding-right: 3em; 
 }
 
 input[type="text"] {
@@ -289,6 +296,10 @@ img {
   overflow: scroll;
 }
 
+div.msg {
+  text-align: center; 
+}
+
 .app {
   margin-left: 80px;
 }
@@ -296,3 +307,11 @@ img {
 .challenge button {
   font-size: 10px;
 }
+
+footer#footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+}
+
