@@ -40,6 +40,30 @@ export default class Menu extends React.Component{
         setTimeout(checkLogOn.bind(this), 800);
       }
     }
+
+    socket.on('challenge', (challenger, challenged, accessCode, game_id) => {
+      db.getUserById(challenger)
+      .then(function(user){
+        if (user_id === challenged) {
+          if(confirm(`${user[0].name} has challenged you! Do you accept?`)) {
+            sessionStorage.setItem('gameId', game_id);
+            sessionStorage.setItem('accessCode', accessCode);
+            db.userJoinsGame(game_id)
+            .then(function(resp){
+              db.updateGameStatus(game_id, 'full')
+            })
+            .then(function(resp){
+              socket.emit('accept', challenger, challenged, accessCode, game_id);
+            });
+          }
+        }
+      })
+    });
+
+    socket.on('accept', (challenger, challenged, accessCode, game_id) => {
+      browserHistory.push(`/${accessCode}`);
+    });
+
   }
 
   // two-way binding for access code input
