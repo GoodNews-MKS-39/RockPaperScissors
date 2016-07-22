@@ -24,7 +24,7 @@ render() {
           <div className="challenge-app">
             <Challenge />
           </div>
-          <div className="chat-app">
+          <div className="chat">
             <ChatApp />
           </div>
         </div>

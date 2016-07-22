@@ -93,7 +93,7 @@ export default class Challenge extends React.Component {
   render() {
     return (
       <div>
-        <h5>Online ({this.state.onlineUsers.length}):</h5>
+        <h4>Online ({this.state.onlineUsers.length}):</h4>
         <div className="challenge-container">
           {
             this.state.onlineUsers.length > 0
@@ -102,7 +102,7 @@ export default class Challenge extends React.Component {
               .map(user => {
                 return (
                   <div key={user.user_id} className="challenge">
-                    <img src= {user.photo_url} />
+                    <img className="sidebar" src= {user.photo_url} />
                     <span> {user.name} </span>
                     {
                       (user.user_id !== sessionStorage.getItem("user_id")) 
