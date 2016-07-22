@@ -40,14 +40,16 @@ class ChatApp extends React.Component {
 
 	render () {
 		const messages = this.state.messages.map((message, index) => {
-			return <li key={index}><b>{message.from}:</b>{message.body}</li>
+			return <div key={index}><b>{message.from} : </b>{message.body}</div>
 		})
 
 		return (
 			<div>
-				<h5>Messages</h5>
-				{messages.reverse()}
-				<input id="footer" type='text' placeholder='enter message...' onKeyUp={this.handleSubmit} />
+				<nav>
+					<h5>Messages</h5>
+				</nav>
+			<div className="msg">{messages.reverse()}</div>	
+				<footer id="footer"><input type='text' placeholder='enter message...' onKeyUp={this.handleSubmit} /></footer>
 			</div>
 		)
 	}

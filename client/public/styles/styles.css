@@ -21,6 +21,10 @@ a {
   width: 130px;
 }
 
+button {
+  border-radius: 5em;
+}
+
 .container {
   text-align: center;
   padding: 10px;
@@ -41,6 +45,9 @@ a {
   padding-top: 20%;
   max-width: 500px;
   margin: auto;
+}
+div.narrative.container.nine.column{
+  padding-right: 3em; 
 }
 
 input[type="text"] {
@@ -258,7 +265,7 @@ img {
   height: 4em; 
 }
 
-.container {
+.container. {
   text-align: center;
   padding: 10px;
 }
@@ -280,6 +287,10 @@ img {
   overflow: scroll;
 }
 
+div.msg {
+  text-align: center; 
+}
+
 .app {
   margin-left: 80px;
 }
@@ -287,3 +298,13 @@ img {
 .challenge button {
   font-size: 10px;
 }
+<<<<<<< c3e58f0f18a5a37be2263d63bcf596bb07a7faeb
+=======
+
+footer#footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  text-align: center;
+}
+>>>>>>> keep modifying chat app layout
