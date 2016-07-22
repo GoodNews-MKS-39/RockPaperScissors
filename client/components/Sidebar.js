@@ -21,7 +21,7 @@ export default class Sidebar extends React.Component{
 
 render() {
     return (
-        <div className="sidebar contain narrative three columns offset-by-nine column vertical">
+        <div className="sidebar container narrative three columns offset-by-nine column vertical">
           <div className="challenge-app">
             <Challenge />
           </div>

@@ -236,7 +236,7 @@ a {
 
 .container {
   text-align: center;
-  padding: 100px;
+  padding: 10px;
 }
 
 .hidden {
@@ -252,7 +252,7 @@ a {
   position: relative;
   vertical-align: middle;
   width: 100%;
-  height: 300px;
+  height: 275px;
   overflow: scroll;
 }
 
@@ -263,9 +263,3 @@ a {
 .challenge button {
   font-size: 10px;
 }
-
-.contain {
-  text-align: center;
-  padding: 10px;
-}
-
