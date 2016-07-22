@@ -178,6 +178,7 @@ export default class BattleContainer extends React.Component {
     // set opponent as winner for banner and scoreboard props, inc round in state
     this.state.winners[this.state.round-1] = 'opponent';
     this.setState({status: 'opponent', round: this.state.round + 1});
+    console.log('status changed to opponent');
     setTimeout(this.resetRound.bind(this), 3000);
   }
 
