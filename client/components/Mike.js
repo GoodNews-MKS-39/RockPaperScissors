@@ -18,9 +18,9 @@ export default class Mike extends React.Component {
           <img src = "/images/qmark.png"/>}
         </div>
         <div>
-          <button disabled>Bear</button>
-          <button disabled>Princess</button>
           <button disabled>Cowboy</button>
+          <button disabled>Princess</button>
+          <button disabled>Bear</button>
         </div>
       </div>
     );
