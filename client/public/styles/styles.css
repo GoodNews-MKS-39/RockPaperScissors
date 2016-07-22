@@ -307,4 +307,8 @@ hr {
   width: 75%;
 }
 
+.rules {
+  display: block;
+  text-align: center
+}
 

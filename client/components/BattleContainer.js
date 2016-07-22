@@ -207,11 +207,18 @@ export default class BattleContainer extends React.Component {
             handleMove={this.handleMove.bind(this)}
             icon={this.state.playerIcon}
           />
+          
           {/* opponent component */}
           <Mike
             opponent={this.state.opponent}
             icon={this.state.opponentIcon}
           />
+          <div className="rules">
+          <h2>Rules</h2>
+            <span>Bear Eats Princess</span><br />
+            <span>Princess Seduces Cowboy</span><br />
+            <span>Cowboy Kills Bear</span><br />
+          </div>
         </div>
     </div>
     );
