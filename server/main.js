@@ -45,7 +45,6 @@ app.post('/api/games', (req, res) => {
 
 // taking gameId, will assign it to user that creates game
 app.post('/api/users/start', (req, res) => {
-  console.log('req', req.body);
   db('users').where('user_id', req.body.user_id).update({
     'game_id': req.body.gameId,
     'status': 'waiting',
@@ -292,10 +291,10 @@ io.on('connection', function(socket){
 		io.emit('rematch', gameId)
 	})
 
-  socket.on('message', body => {
+  socket.on('message', (message) => {
     socket.broadcast.emit('message', {
-      body: body,
-      from: socket.id.slice(8)
+      body: message.body,
+      from: message.from
     })
   })
 

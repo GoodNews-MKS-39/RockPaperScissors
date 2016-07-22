@@ -62,8 +62,3 @@ Uses a Menu component that routes to Game component based on access code.
   * Tom LeConey
   * Shane McQuerter
   * Kenny Torng
-  * Ashley Smith
-  * Kyhan Turner
-  * Ricardo D'Alessandro
-  * Tim Crane
-  * Tony Kung
