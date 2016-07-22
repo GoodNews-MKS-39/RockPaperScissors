@@ -45,10 +45,10 @@ class ChatApp extends React.Component {
 
 		return (
 			<div>
-				<nav>
-					<h5>Messages</h5>
-				</nav>
-			<div className="msg">{messages.reverse()}</div>	
+				<div>
+					<h4>Messages</h4>
+				</div>
+			<div className="chat-app">{messages.reverse()}</div>	
 				<footer id="footer"><input type='text' placeholder='enter message...' onKeyUp={this.handleSubmit} /></footer>
 			</div>
 		)
