@@ -252,6 +252,14 @@ a {
   position: relative;
   vertical-align: middle;
   width: 100%;
-  height: 250px;
+  height: 300px;
   overflow: scroll;
+}
+
+.app {
+  margin-left: 80px;
+}
+
+.challenge button {
+  font-size: 10px;
 }

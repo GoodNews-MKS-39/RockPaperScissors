@@ -77,7 +77,7 @@ export default class Menu extends React.Component{
   // show buttons based on view in state 
   render() {
     return (
-      <div className="narrative container eleven column offset-by-one column">
+      <div className="narrative container nine column">
         <h1>The Rock Shop</h1>
         <hr />
         {

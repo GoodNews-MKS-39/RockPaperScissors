@@ -45,7 +45,7 @@ export default class Challenge extends React.Component {
                 <div key={user.user_id} className="challenge">
                   <img src= {user.photo_url} />
                   <span> {user.name} </span>
-                  <button>CHALLENGE</button>
+                  <button className="button-primary">CHALLENGE</button>
                 </div>
               )
             })
