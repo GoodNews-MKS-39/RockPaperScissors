@@ -276,6 +276,11 @@ img {
   vertical-align: middle
 }
 
+.challenge-container {
+  height: 300px;
+  overflow: scroll;
+}
+
 .chat-app {
   position: relative;
   vertical-align: middle;

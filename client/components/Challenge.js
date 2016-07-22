@@ -36,6 +36,7 @@ export default class Challenge extends React.Component {
   render() {
     return (
       <div>
+<<<<<<< 1c71babc26e9c0ecf2ba0b96f9e7789ecec1ee7c
       <h5>Online Users</h5>
         {
           this.state.onlineUsers.length > 0
@@ -51,6 +52,30 @@ export default class Challenge extends React.Component {
             })
           : null
         }
+=======
+        <h5>Online ({this.state.onlineUsers.length}):</h5>
+        <div className="challenge-container">
+          {
+            this.state.onlineUsers.length > 0
+            ? this.state.onlineUsers
+              .sort()
+              .map(user => {
+                return (
+                  <div key={user.user_id} className="challenge">
+                    <img src= {user.photo_url} />
+                    <span> {user.name} </span>
+                    {
+                      (user.user_id !== sessionStorage.getItem("user_id")) 
+                      ? <button className="button-primary">CHALLENGE</button>
+                      : null
+                    }
+                  </div>
+                )
+              })
+            : null
+          }
+        </div>
+>>>>>>> rematch working
       </div>
     );
   }

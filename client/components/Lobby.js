@@ -72,12 +72,10 @@ export default class Lobby extends React.Component{
       db.deleteUserById(this.user_id).then();
       db.deleteGameById(this.gameId).then();
       sessionStorage.removeItem('gameId');
-      sessionStorage.removeItem('user_id');
     } else {
       db.updateGameStatus(this.gameId, 'waiting').then(() => {
         db.deleteUserById(this.user_id).then();
         sessionStorage.removeItem('gameId');
-        sessionStorage.removeItem('user_id');
         socket.emit('leave game', this.gameId);
       });
     }
@@ -129,7 +127,7 @@ export default class Lobby extends React.Component{
         <div className="button-container">
           {this.state.gameStatus === 'waiting' ?
             <button disabled>Start Game</button> :
-            this.state.gameStatus === 'full' ?
+            this.state.gameStatus === 'full' && this.state.players.length > 1 ?
             <button onClick={this.handleStartGame.bind(this)}>Start Game</button> :
             null}
           <Link to="/">
