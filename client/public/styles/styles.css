@@ -236,7 +236,7 @@ a {
 
 .container {
   text-align: center;
-  padding: 10px;
+  padding: 100px;
 }
 
 .hidden {
@@ -263,3 +263,4 @@ a {
 .challenge button {
   font-size: 10px;
 }
+
