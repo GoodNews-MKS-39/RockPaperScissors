@@ -24,6 +24,7 @@ export default class Join extends React.Component {
 
               // set current gameId to local storage
               sessionStorage.setItem('gameId', game.id);
+              sessionStorage.setItem('accessCode', this.props.accessCode);
 
               // set game status to full
               db.updateGameStatus(game.id, 'full').then();

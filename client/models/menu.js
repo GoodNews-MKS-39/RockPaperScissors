@@ -138,6 +138,21 @@ export function updateGameStatus(gameId, status) {
   .catch(error => console.error(error));
 }
 
+//------- updates players' statuses at game end--------//
+export function gameEnd(game_id) {
+  return fetch('/api/games/end', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      game_id: game_id
+    })
+  })
+  .then(data => data.json())
+  .catch(error => console.error(error));
+}
+
 //----------Get a Game by ID---------//
 export function getGameById(gameId) {
   return fetch('/api/games/' + gameId, {
@@ -180,7 +195,6 @@ export function deleteUserById(user_id) {
 }
 
 export function deleteSessionByUserId(user_id) {
-  console.log('model tells backend to delete session');
   return fetch('/api/sessions', {
     method: 'DELETE',
     headers: {

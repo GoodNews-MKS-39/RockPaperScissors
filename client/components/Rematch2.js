@@ -3,37 +3,24 @@ import { Link } from 'react-router'
 
 import * as db from '../models/menu'
 
-export default class Lobby extends React.Component{
+export default class Rematch2 extends React.Component{
   constructor() {
     super();
     this.state = {
       players: [],
-      gameStatus: 'waiting'
+      gameStatus: 'full'
     };
   }
 
   componentDidMount() {
     this.user_id = +sessionStorage.getItem('user_id');
     this.gameId = +sessionStorage.getItem('gameId');
+    this.accessCode = sessionStorage.getItem('accessCode');
 
 
-    this.refreshGameStatus();
     this.populatePlayers();
     // listens for 'join game' broadcasts
     // refreshes player list if gameId in broadcast matches current gameId
-    socket.on('join game', (gameId) => {
-      if (gameId === this.gameId) { 
-        this.populatePlayers();
-        this.refreshGameStatus();
-      }
-    });
-
-    socket.on('leave game', (gameId) => {
-      if (gameId === +sessionStorage.getItem('gameId')) { 
-        this.populatePlayers();
-        this.refreshGameStatus();
-      }
-    });
   }
 
   populatePlayers() {
@@ -92,7 +79,7 @@ export default class Lobby extends React.Component{
 
         <div className="access-code">
           Access Code: 
-          <span> {this.props.accessCode} </span>
+          <span> {this.accessCode} </span>
         </div>
 
         <hr />
@@ -127,7 +114,7 @@ export default class Lobby extends React.Component{
         <div className="button-container">
           {this.state.gameStatus === 'waiting' ?
             <button disabled>Start Game</button> :
-            this.state.gameStatus === 'full' && this.state.players.length > 1 ?
+            this.state.gameStatus === 'full' ?
             <button onClick={this.handleStartGame.bind(this)}>Start Game</button> :
             null}
           <Link to="/">

@@ -32,8 +32,6 @@ export default class Menu extends React.Component{
             let photo_url = sessionStorage.getItem("photo_url");
             let friends = sessionStorage.getItem("friends");
             db.createNewUser(user_id, name, photo_url, friends) // add user to db
-            // sessionStorage.clear();
-            // sessionStorage.setItem('user_id', user_id);
           },1000);
         });
       } else {
@@ -65,10 +63,8 @@ export default class Menu extends React.Component{
 
   _handleLogOut(view, e) { // delete session from database and sessionStorage
     let user_id = sessionStorage.getItem("user_id");
-    console.log('logout button clicked', user_id);
     return db.deleteSessionByUserId(user_id)
     .then(function(resp) {
-      console.log('backend tells frontend that the session is deleted', resp);
       document.getElementById('log-out').click();
       return;
     });

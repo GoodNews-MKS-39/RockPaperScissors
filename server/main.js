@@ -61,7 +61,6 @@ app.post('/api/users/start', (req, res) => {
 
 // taking gameId, will assign it to user that joins game
 app.post('/api/users/join', (req, res) => {
-  console.log('req', req.body);
   db('users').where('user_id', req.body.user_id).update({
     'game_id': req.body.gameId,
     'status': 'waiting',
@@ -123,10 +122,8 @@ app.post('/api/users', (req, res) => {
 
 // delete session by user_id
 app.delete('/api/sessions', (req,res) => {
-  console.log('back end tells database to delete session');
   db('sessions').where('user_id', req.body.user_id).del()
   .then((response) => {
-    console.log('database tells backend that session is deleted', response);
     res.send({});
   })
 });
@@ -183,6 +180,16 @@ app.patch('/api/gameStatus', (req, res) => {
 app.patch('/api/resetUser', (req, res) => {
   db('users').where('user_id', req.body.user_id).update({
     status: 'waiting',
+    score: 0
+  })
+  .then(() => {
+    res.send({});
+  })
+});
+
+// take player out of game at end time
+app.patch('/api/games/end', (req, res) => {
+  db('users').where('game_id', req.body.game_id).update({
     score: 0
   })
   .then(() => {

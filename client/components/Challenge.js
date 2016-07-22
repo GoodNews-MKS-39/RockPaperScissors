@@ -36,21 +36,28 @@ export default class Challenge extends React.Component {
   render() {
     return (
       <div>
-      <h5>Online Users</h5>
-        {
-          this.state.onlineUsers.length > 0
-          ? this.state.onlineUsers
-            .map(user => {
-              return (
-                <div key={user.user_id} className="challenge">
-                  <img src= {user.photo_url} />
-                  <button className="button-primary">CHALLENGE</button>
-                  <h6> {user.name} </h6>
-                </div>
-              )
-            })
-          : null
-        }
+        <h5>Online ({this.state.onlineUsers.length}):</h5>
+        <div className="challenge-container">
+          {
+            this.state.onlineUsers.length > 0
+            ? this.state.onlineUsers
+              .sort()
+              .map(user => {
+                return (
+                  <div key={user.user_id} className="challenge">
+                    <img src= {user.photo_url} />
+                    <span> {user.name} </span>
+                    {
+                      (user.user_id !== sessionStorage.getItem("user_id")) 
+                      ? <button className="button-primary">CHALLENGE</button>
+                      : null
+                    }
+                  </div>
+                )
+              })
+            : null
+          }
+        </div>
       </div>
     );
   }

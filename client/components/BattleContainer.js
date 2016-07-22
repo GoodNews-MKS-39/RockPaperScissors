@@ -101,7 +101,6 @@ export default class BattleContainer extends React.Component {
   }
 
   resolveRound() {
-    console.log(this.state.player.score)
     // check winner
     const playerMove = this.state.player.status;
     const opponentMove = this.state.opponent.status;
@@ -157,7 +156,18 @@ export default class BattleContainer extends React.Component {
         winner: playerName
       });
       // call end game for current client
-      setTimeout(this.props.endGame.bind(null, playerName), 3000);
+      this.setState({
+        playerIcon: '',
+        opponentIcon: '',
+        player: {},
+        opponent: {},
+        round: 1,
+        winners: ['', '', ''],
+        status: '',
+        moveAllowed: true,
+        godHand: false
+      });
+      setTimeout(this.props.endGame.bind(null, playerName), 1000);
     // else, reset for next round
     } else {
       setTimeout(this.resetRound.bind(this), 3000);
@@ -168,6 +178,7 @@ export default class BattleContainer extends React.Component {
     // set opponent as winner for banner and scoreboard props, inc round in state
     this.state.winners[this.state.round-1] = 'opponent';
     this.setState({status: 'opponent', round: this.state.round + 1});
+    console.log('status changed to opponent');
     setTimeout(this.resetRound.bind(this), 3000);
   }
 

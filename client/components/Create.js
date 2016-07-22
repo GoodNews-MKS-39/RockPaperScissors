@@ -13,7 +13,6 @@ export default class Join extends React.Component {
     e.preventDefault();
     let gameGenerated = false;
     let accessCode = generateAccessCode();
-    console.log('access code', accessCode);
 
     // get current list of games
     db.gameList()
@@ -37,6 +36,7 @@ export default class Join extends React.Component {
                 db.userStartsGame(gameId)
                   .then(resp => {
                     let user_id = sessionStorage.getItem("user_id");
+                    sessionStorage.setItem('accessCode', accessCode);
                     browserHistory.push(`/${accessCode}`);
                   })
               })

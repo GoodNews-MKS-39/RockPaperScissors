@@ -14,10 +14,9 @@ export default class Sidebar extends React.Component{
     };
   }
 
-  playerStatus(){
+  playerStatus() {
 
   }
-
 
 render() {
     return (
