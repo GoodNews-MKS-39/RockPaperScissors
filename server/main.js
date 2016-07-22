@@ -59,6 +59,7 @@ app.post('/api/users/start', (req, res) => {
   });
 });
 
+
 // taking gameId, will assign it to user that joins game
 app.post('/api/users/join', (req, res) => {
   db('users').where('user_id', req.body.user_id).update({
