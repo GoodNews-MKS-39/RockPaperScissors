@@ -37,7 +37,7 @@ class ChatApp extends React.Component {
 
 		return (
 			<div>
-				<h4>Messages</h4>
+				<h5>Messages</h5>
 				{messages.reverse()}
 				<input id="footer" type='text' placeholder='enter message...' onKeyUp={this.handleSubmit} />
 			</div>

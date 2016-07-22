@@ -36,7 +36,7 @@ export default class Challenge extends React.Component {
   render() {
     return (
       <div>
-      <h4>Online Users</h4>
+      <h5>Online Users</h5>
         {
           this.state.onlineUsers.length > 0
           ? this.state.onlineUsers
