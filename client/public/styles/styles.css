@@ -264,3 +264,8 @@ a {
   font-size: 10px;
 }
 
+.contain {
+  text-align: center;
+  padding: 10px;
+}
+
