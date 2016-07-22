@@ -35,54 +35,26 @@ export default class Challenge extends React.Component {
 
   challengeUser (userId) {
     // e.preventDefault()
-    var code = generateAccessCode();
-    var gameId;
+    var accessCode = generateAccessCode();
     var challenged =  userId.target.getAttribute("data");
     var challenger = sessionStorage.getItem('user_id');
-
-    // Promise.all([
-    //     db.getUserById(challenged),
-    //     db.getUserById(challenger)
-    //   ])
-    
-
-    challenged = db.getUserById(challenged)
-      .then(challengedUser => {
-        challenged = challengedUser[0];
-        return challenged;
-      })
-      .then(challenged => {
-        return db.getUserById(challenger)
-      })
-      .then(challengerUser => {
-        challenger = challengerUser[0];
-        return challenger;
-      })
-      .then(function(){
-        //variables are working!
-        console.log('challenger: ', challenger)
-        console.log('challenged: ', challenged)
-      })
+    var game_id;
+    db.generateNewGame(accessCode)
+    .then(id => {
+      game_id = id[0];
+      // set current gameId to local storage
+      sessionStorage.setItem('gameId', game_id);
+      sessionStorage.setItem('accessCode', accessCode);
+      db.userJoinsGame(game_id)
+      .then(function(resp){
+        db.updateGameStatus(game_id, 'full')
+        .then(function(resp){
+          socket.emit('challenge', challenger, challenged, accessCode, game_id);
+        });
+      });
+    });  
      
-     
-    db.generateNewGame(code)
-      .then(id => {
-        gameId = id[0]
-        sessionStorage.setItem('gameId', gameId);
-        return gameId
-      })
-      .then(gameId => {
-        db.userStartsGame(gameId)
-          .then(resp => {
-            console.log('resp in userStartsGame ', resp)
-            db.userJoinsGame(gameId) 
-          })
 
-      })
-
-
-
-    
   }
 
 

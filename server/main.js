@@ -306,6 +306,14 @@ io.on('connection', function(socket){
     })
   })
 
+  socket.on('challenge', (challenger, challenged, accessCode, game_id) => {
+    io.emit('challenge', challenger, challenged, accessCode, game_id)
+  })
+
+  socket.on('accept', (challenger, challenged, accessCode, game_id) => {
+    io.emit('accept', challenger, challenged, accessCode, game_id)
+  })
+
   socket.on('disconnect', function(){
     io.emit('user disconnected');
   })
