@@ -33,24 +33,6 @@ export function userStartsGame(gameId) {
   .catch(error => console.error(error));
 }
 
-//--------------User challenges another user to a new Game------------//
-// export function challengerStartsGame(gameId) {
-//   return fetch('/api/users/start', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       gameId: gameId,
-//       user_id: challengerId
-//     })
-//   })
-//   .then(resp => {
-//     return resp;
-//   })
-//   .catch(error => console.error(error));
-// }
-
 //--------------User joins Game------------//
 export function userJoinsGame(gameId) {
   return fetch('/api/users/join', {

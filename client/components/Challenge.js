@@ -8,15 +8,11 @@ import * as db from '../models/menu'
 export default class Challenge extends React.Component {
   constructor(props){
     super(props);
-    this.state = { onlineUsers: [], userId: null} 
+    this.state = { onlineUsers: []} 
   }
  
   componentDidMount () {
     setInterval(this.getOnlineUsers.bind(this), 1000);
-  }
-
-  whoIsLoggedIn () {
-    //setState with UserId
   }
 
   getOnlineUsers () {
@@ -44,6 +40,12 @@ export default class Challenge extends React.Component {
     var challenged =  userId.target.getAttribute("data");
     var challenger = sessionStorage.getItem('user_id');
 
+    // Promise.all([
+    //     db.getUserById(challenged),
+    //     db.getUserById(challenger)
+    //   ])
+    
+
     challenged = db.getUserById(challenged)
       .then(challengedUser => {
         challenged = challengedUser[0];
@@ -61,6 +63,7 @@ export default class Challenge extends React.Component {
         console.log('challenger: ', challenger)
         console.log('challenged: ', challenged)
       })
+     
      
     db.generateNewGame(code)
       .then(id => {
