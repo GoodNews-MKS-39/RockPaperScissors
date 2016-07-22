@@ -46,7 +46,7 @@ a {
 input[type="text"] {
   display: block;
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
   max-width: 280px;
   height: 48px;
   margin: 10px auto;
@@ -141,6 +141,7 @@ img {
   height: auto;
   border: none;
   margin-top: 15px;
+  margin-left: 3em; 
 }
 
 /*
@@ -226,12 +227,35 @@ img {
 }
 
 a {
-    color: #999;
+  color: #999;
+}
+
+h5 {
+  text-align: center
+}
+
+h6 {
+  display: -webkit-inline-box; 
+  text-align: center
+  display: inline;  
+  padding-left: 2.55em; 
 }
 
 .button-container button {
   margin: 5px 15px;
   width: 130px;
+}
+
+button.button-primary {
+  position: absolute;
+  margin: 1em;
+  margin-top: 16px; 
+  border-radius: 5em; 
+}
+
+img {
+  margin-top: 0.8em; 
+  height: 4em; 
 }
 
 .container {
@@ -262,10 +286,5 @@ a {
 
 .challenge button {
   font-size: 10px;
-}
-
-.contain {
-  text-align: center;
-  padding: 10px;
 }
 
