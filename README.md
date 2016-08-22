@@ -1,4 +1,4 @@
-# The Rock Shop
+# Bear-Princess-Cowboy
 
 A two player game of Rock-Paper-Scissors.
 
