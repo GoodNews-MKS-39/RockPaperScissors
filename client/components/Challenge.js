@@ -12,7 +12,7 @@ export default class Challenge extends React.Component {
   }
  
   componentDidMount () {
-    setInterval(this.getOnlineUsers.bind(this), 1000);
+    setInterval(this.getOnlineUsers.bind(this), 500);
   }
 
   getOnlineUsers () {

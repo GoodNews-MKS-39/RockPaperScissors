@@ -98,7 +98,7 @@ export default class Menu extends React.Component{
   render() {
     return (
       <div className="narrative container nine column">
-        <h1>The Rock Shop</h1>
+        <h1>Bear - Princess - Cowboy</h1>
         <hr />
         {
           this.state.view === 'loggedOut'
