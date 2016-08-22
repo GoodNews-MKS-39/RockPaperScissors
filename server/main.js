@@ -319,6 +319,6 @@ io.on('connection', function(socket){
   })
 })
 
-var port = process.env.PORT || 4000;
+var port = process.env.PORT || 3000;
 http.listen(port);
 console.log("Listening on localhost:" + port);
