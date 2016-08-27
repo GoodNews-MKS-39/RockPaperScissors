@@ -19,13 +19,14 @@ export default class Challenge extends React.Component {
     var users = [];
     db.getSessions()
     .then(sessions => {
+      console.log('sessions', sessions)
       sessions.forEach(session => {
         db.getUserById(session.user_id)
         .then(user => {
           users.push(user[0]);
         });
       });
-      setTimeout(this.setOnlineUsers.bind(this, users.sort((a, b) => a.name - b.name)), 500);
+      setTimeout(this.setOnlineUsers.bind(this, users.sort((a, b) => a.name - b.name) ), 500);
     })
   }
 
