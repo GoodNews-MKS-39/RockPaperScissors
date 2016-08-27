@@ -20,7 +20,7 @@ export default class Challenge extends React.Component {
     db.getSessions()
     .then(sessions => {
       console.log('sessions', sessions)
-      sessions.forEach(session => {
+      sessions.sort((a,b) => a.user_id - b.user_id).forEach(session => {
         db.getUserById(session.user_id)
         .then(user => {
           users.push(user[0]);
