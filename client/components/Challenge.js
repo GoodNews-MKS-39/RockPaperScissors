@@ -30,8 +30,7 @@ export default class Challenge extends React.Component {
   }
 
   setOnlineUsers (users) {
-    console.log('users', users)
-    this.setState({onlineUsers: users});
+    this.setState({onlineUsers: users.sort((a, b) => a.name - b.name)});
   }
 
   challengeUser (userId) {
