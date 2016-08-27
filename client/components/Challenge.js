@@ -12,26 +12,33 @@ export default class Challenge extends React.Component {
   }
  
   componentDidMount () {
-    setInterval(this.getOnlineUsers.bind(this), 2500);
+    setInterval(this.getOnlineUsers.bind(this), 500);
   }
 
   getOnlineUsers () {
     var users = [];
     db.getSessions()
     .then(sessions => {
-      console.log('sessions', sessions)
-      sessions.sort((a,b) => a.user_id - b.user_id).forEach(session => {
+      sessions.forEach(session => {
         db.getUserById(session.user_id)
         .then(user => {
           users.push(user[0]);
         });
       });
-      setTimeout(this.setOnlineUsers.bind(this, users.sort((a, b) => a.name - b.name) ), 2500);
+      setTimeout(this.setOnlineUsers.bind(this, users), 500);
     })
   }
 
   setOnlineUsers (users) {
-    this.setState({onlineUsers: users.sort((a, b) => a.name - b.name)});
+    this.setState({ onlineUsers: users.sort(function (a, b) {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      }) });
   }
 
   challengeUser (userId) {
