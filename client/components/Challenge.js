@@ -12,7 +12,7 @@ export default class Challenge extends React.Component {
   }
  
   componentDidMount () {
-    setInterval(this.getOnlineUsers.bind(this), 500);
+    setInterval(this.getOnlineUsers.bind(this), 2500);
   }
 
   getOnlineUsers () {
@@ -26,7 +26,7 @@ export default class Challenge extends React.Component {
           users.push(user[0]);
         });
       });
-      setTimeout(this.setOnlineUsers.bind(this, users.sort((a, b) => a.name - b.name) ), 500);
+      setTimeout(this.setOnlineUsers.bind(this, users.sort((a, b) => a.name - b.name) ), 2500);
     })
   }
 
