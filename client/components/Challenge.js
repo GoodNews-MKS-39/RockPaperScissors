@@ -30,6 +30,7 @@ export default class Challenge extends React.Component {
   }
 
   setOnlineUsers (users) {
+    console.log('users', users)
     this.setState({onlineUsers: users});
   }
 
