@@ -64,6 +64,7 @@ export default class Challenge extends React.Component {
   }
 
   render() {
+    let session = sessionStorage.getItem("user_id");
     return (
       <div>
         <h4>Online ({this.state.onlineUsers.length}):</h4>
@@ -79,7 +80,7 @@ export default class Challenge extends React.Component {
                     <div className="challenge-button-name">
                       <span> {user.name} </span>
                       {
-                        (user.user_id !== sessionStorage.getItem("user_id")) 
+                        (session && user.user_id !== session) 
                         ? <button data={user.user_id} className="button-primary" onClick={ this.challengeUser.bind(user.userId) } >CHALLENGE</button>
                         : null
                       }
