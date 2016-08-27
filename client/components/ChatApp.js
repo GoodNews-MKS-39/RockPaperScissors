@@ -1,10 +1,11 @@
 import React from 'react';
 import io from 'socket.io-client';
-import * as db from '../models/menu'
-import user_id from './Game'
+import * as db from '../models/menu';
+import user_id from './Game';
 
 
 class ChatApp extends React.Component {
+
 	constructor(props) {
 		super(props)
 		this.state = { messages: [] }
@@ -20,21 +21,17 @@ class ChatApp extends React.Component {
 	}
 
 	handleSubmit(event) {
-		event.persist()
-		const body = event.target.value
+		event.persist();
+		const body = event.target.value;
 		if(event.keyCode === 13 && body) {
-			console.log("in if?")
-		var user = db.getUserById(this.user_id)
-      .then(user => {
-			let username = user[0].name
+			let username = sessionStorage.getItem('name');
 			const message = {
 				body: body,
 				from: username
-			}	
-			this.setState({ messages: [...this.state.messages] })
-	  		this.socket.emit('message', message)
-			event.target.value = ''
-		})
+		}	
+		this.setState({ messages: [...this.state.messages] });
+  	this.socket.emit('message', message);
+		event.target.value = '';
 	}
 };
 

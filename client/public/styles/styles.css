@@ -139,23 +139,9 @@ input[type="text"] {
   background-color: #ffe5ea;
 }
 
-img {
-
-  width: auto;
-  height: auto;
-  border: none;
-  max-width: 150px;
-  max-height: 150px;
-
-}
-
-img .sidebar {
-  margin-top: 15px;
-  margin-left: 3em; 
-  margin-top: 0.8em; 
-  height: 4em; 
-  float: left;
-
+.arena img {
+  height: 180px;
+  width: 180px;
 }
 
 /*
@@ -254,14 +240,11 @@ h6 {
 
 .button-container button {
   margin: 5px 15px;
-  width: 130px;
+  width: 215px;
 }
 
 button.button-primary {
-  /*margin: 1em;*/
-  /*margin-top: 16px; */
   border-radius: 5em; 
-  float: initial;
 }
 
 .container {
@@ -279,8 +262,30 @@ button.button-primary {
 }
 
 .challenge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 300px;
   overflow: scroll;
+}
+
+.challenge {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+}
+
+.challenge-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.challenge-button-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 150px;
 }
 
 .chat-app {
@@ -291,6 +296,10 @@ button.button-primary {
   overflow: scroll;
 }
 
+.chat-app div {
+  text-align: left;
+}
+
 div.msg {
   text-align: center; 
 }
@@ -299,8 +308,15 @@ div.msg {
   margin-left: 80px;
 }
 
+img.sidebar {
+  height: 62px;
+  width: 62px;
+  margin-right: 10px;
+}
+
 .challenge button {
   font-size: 10px;
+  margin-bottom: 0;
 }
 
 hr {

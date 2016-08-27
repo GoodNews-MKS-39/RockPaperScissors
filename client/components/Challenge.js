@@ -53,14 +53,7 @@ export default class Challenge extends React.Component {
         });
       });
     });  
-     
-
   }
-
-
-
-
-
 
   render() {
     return (
@@ -74,13 +67,15 @@ export default class Challenge extends React.Component {
               .map(user => {
                 return (
                   <div key={user.user_id} className="challenge">
-                    <img className="sidebar" src= {user.photo_url} />
-                    <span> {user.name} </span>
-                    {
-                      (user.user_id !== sessionStorage.getItem("user_id")) 
-                      ? <button data={user.user_id} className="button-primary" onClick={ this.challengeUser.bind(user.userId) } >CHALLENGE</button>
-                      : null
-                    }
+                    <div className="challenge-img"><img className="sidebar" src= {user.photo_url} /></div>
+                    <div className="challenge-button-name">
+                      <span> {user.name} </span>
+                      {
+                        (user.user_id !== sessionStorage.getItem("user_id")) 
+                        ? <button data={user.user_id} className="button-primary" onClick={ this.challengeUser.bind(user.userId) } >CHALLENGE</button>
+                        : null
+                      }
+                    </div>
                   </div>
                 )
               })
