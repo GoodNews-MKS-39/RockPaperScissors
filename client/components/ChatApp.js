@@ -24,7 +24,7 @@ class ChatApp extends React.Component {
 		event.persist();
 		const body = event.target.value;
 		if(event.keyCode === 13 && body) {
-			let username = sessionStorage.getItem('name');
+			let username = sessionStorage.getItem('name') || '(anonymous)';
 			const message = {
 				body: body,
 				from: username
